@@ -2,8 +2,18 @@ import { Html } from "@react-three/drei";
 import StatusBar from "../components/StatusBar";
 import HomeView from "../components/HomeView";
 import BottomNav from "../components/BottomNav";
+import LockView from "../components/LockView";
+import { useStore } from "../hooks/useStore";
 
 export default function HeroPage() {
+  const setPhoneHover = useStore((state) => state.setPhoneHover);
+  const handleCursorIn = () => {
+    setPhoneHover(true);
+  };
+
+  const handleCursorOut = () => {
+    setPhoneHover(false);
+  };
   return (
     <Html
       position={[0, 0.018, -0.81]}
@@ -25,13 +35,16 @@ export default function HeroPage() {
       {/* <img src="./wallpaper.jpg" style={{ width: "100%", height: "100%" }} /> */}
 
       <main
-        className={`w-full h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-[90px] pt-6 text-4xl`}
+        onPointerOver={handleCursorIn}
+        onPointerOut={handleCursorOut}
+        className={`w-full h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-[90px] text-4xl`}
       >
         <div className="h-full flex flex-col">
           {/* status bar */}
-          <StatusBar />
+          {/* <StatusBar />
           <HomeView />
-          <BottomNav />
+          <BottomNav /> */}
+          <LockView />
         </div>
       </main>
     </Html>

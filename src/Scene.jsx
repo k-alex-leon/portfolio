@@ -7,14 +7,16 @@ import {
   ScrollControls,
   Shadow,
 } from "@react-three/drei";
-import Html from "./Html";
 import Objects from "./Objects";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import Phone from "./Phone";
+import { useStore } from "./hooks/useStore";
 
 export default function Scene() {
+  const isPhoneHover = useStore((state) => state.isPhoneHover);
   useFrame(({ pointer, camera }) => {
+    if (isPhoneHover) return;
     camera.position.x = THREE.MathUtils.lerp(
       camera.position.x,
       pointer.x * 0.5,
@@ -47,6 +49,7 @@ export default function Scene() {
     // </ScrollControls>
     <>
       <PresentationControls
+        enabled={!isPhoneHover}
         global
         config={{ mass: 2, tension: 500 }}
         snap={{ mass: 4, tension: 500 }}
