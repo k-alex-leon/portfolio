@@ -1,11 +1,24 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Html, useGLTF } from "@react-three/drei";
-import HeroPage from "./heroPage/HeroPage";
+import HeroPage from "./pages/HeroPage";
+import { config, useSpring, animated } from "@react-spring/three";
 
 export default function Phone(props) {
   const { nodes, materials } = useGLTF("./phone.glb");
+  const [scaleUp, set] = useSpring(() => ({
+    scale: 0,
+    config: config.wobbly,
+    // config: { mass: 10, tension: 500, friction: 50 },
+  }));
+
+  useEffect(() => {
+    setTimeout(() => {
+      set({ scale: 0.1 });
+    }, 1000);
+  }, []);
+
   return (
-    <group {...props} dispose={null} scale={0.1}>
+    <animated.group {...props} dispose={null} scale={scaleUp.scale}>
       <mesh
         name="back"
         castShadow
@@ -155,7 +168,7 @@ export default function Phone(props) {
         position={[6.929, 15.406, -1.671]}
         rotation={[Math.PI / 2, 0, 0]}
       />
-    </group>
+    </animated.group>
   );
 }
 
