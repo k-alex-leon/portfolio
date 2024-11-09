@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-export default function LockView() {
+export default function LockView({ setClose }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const x = useMotionValue(0);
@@ -11,7 +11,8 @@ export default function LockView() {
   const opacity = useTransform(x, xInput, opacityOutput);
 
   const handleDragEnd = (e, info) => {
-    if (info.offset.x > 100) alert("Phone unlocked!");
+    // if (info.offset.x > 100) alert("Phone unlocked!");
+    setClose();
   };
 
   useEffect(() => {
@@ -20,7 +21,9 @@ export default function LockView() {
   }, []);
 
   return (
-    <div className="w-full h-full grid grid-rows-2 grid-cols-1 items-center place-content-center bg-gray-800 rounded-[90px] text-white">
+    <div
+      className={`w-full h-full grid grid-rows-2 grid-cols-1 items-center place-content-center bg-gray-800 rounded-[90px] text-white`}
+    >
       {/* date and hour */}
       <div className="h-full flex flex-col items-center justify-center">
         <h5 className="text-[100px]">

@@ -1,12 +1,19 @@
 import { Html } from "@react-three/drei";
 import StatusBar from "../components/StatusBar";
-import HomeView from "../components/HomeView";
+import HomeView from "../pages/HomeView";
 import BottomNav from "../components/BottomNav";
-import LockView from "../components/LockView";
+import LockView from "../pages/LockView";
 import { useStore } from "../hooks/useStore";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Navigation from "../Navigation";
 
-export default function HeroPage() {
+export default function PhoneScreen() {
   const setPhoneHover = useStore((state) => state.setPhoneHover);
+  const [isLock, setLock] = useState(true);
+
+  // if the phone screen is hover we change global state
+  // this will be used to cancel some actions like camera movement or <PresentationColors />
   const handleCursorIn = () => {
     setPhoneHover(true);
   };
@@ -37,15 +44,9 @@ export default function HeroPage() {
       <main
         onPointerOver={handleCursorIn}
         onPointerOut={handleCursorOut}
-        className={`w-full h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-[90px] text-4xl`}
+        className={`relative w-full h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-[90px] text-4xl`}
       >
-        <div className="h-full flex flex-col">
-          {/* status bar */}
-          {/* <StatusBar />
-          <HomeView />
-          <BottomNav /> */}
-          <LockView />
-        </div>
+        {isLock ? <LockView setClose={() => setLock(false)} /> : <Navigation />}
       </main>
     </Html>
   );

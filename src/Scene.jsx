@@ -10,7 +10,7 @@ import {
 import Objects from "./Objects";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import Phone from "./Phone";
+import Phone from "./models/Phone";
 import { useStore } from "./hooks/useStore";
 
 export default function Scene() {

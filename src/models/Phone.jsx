@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Html, useGLTF } from "@react-three/drei";
-import HeroPage from "./pages/HeroPage";
+import PhoneScreen from "./PhoneScreen";
 import { config, useSpring, animated } from "@react-spring/three";
 
 export default function Phone(props) {
@@ -11,11 +11,14 @@ export default function Phone(props) {
     // config: { mass: 10, tension: 500, friction: 50 },
   }));
 
+  // scale animation with delay
+  // its scaling from 0 to 0.1
   useEffect(() => {
-    setTimeout(() => {
+    let delay = setTimeout(() => {
       set({ scale: 0.1 });
     }, 1000);
   }, []);
+  // clearTimeout(delay);
 
   return (
     <animated.group {...props} dispose={null} scale={scaleUp.scale}>
@@ -43,7 +46,7 @@ export default function Phone(props) {
         // material={materials["Material.003"]}
         position={[0.061, 0.018, 1.789]}
       >
-        <HeroPage />
+        <PhoneScreen />
       </mesh>
       <mesh
         name="glass"
