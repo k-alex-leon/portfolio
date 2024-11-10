@@ -3,45 +3,40 @@ import HomeView from "./pages/HomeView";
 import NotFound from "./pages/NotFound";
 import WindowView from "./pages/WindowView";
 import Layout from "./pages/Layout";
+import Gallery from "./pages/Gallery";
 
 export default function Navigation() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" index element={<HomeView />} />
-        <Route path="*" element={<NotFound />} />
-        <Route
-          path="google"
-          element={
-            <WindowView>
-              <iframe className="w-full h-full rounded-[90px]" src="https://www.bing.com/search?q=dogs"></iframe>
-            </WindowView>
-          }
-        /> */}
-
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeView />} />
           <Route path="*" element={<NotFound />} />
           <Route
-            path="google"
+            path="bing"
+            element={<WindowView url={"https://www.bing.com/search?q=dogs"} />}
+          />
+          <Route
+            path="cube"
             element={
-              <WindowView>
-                <iframe
-                  className="w-full h-full rounded-[90px]"
-                  src="https://www.bing.com/search?q=dogs"
-                ></iframe>
-              </WindowView>
+              <WindowView
+                url={"https://k-alex-leon.github.io/3d-react-rubikcube/"}
+              />
             }
           />
-
           <Route
-            path="whatsapp"
+            path="tetris"
+            element={
+              <WindowView
+                url={"https://k-alex-leon.github.io/tetris-react-project/"}
+              />
+            }
+          />
+          <Route
+            path="gallery"
             element={
               <WindowView>
-                <iframe
-                  className="w-full h-full rounded-[90px]"
-                  src="https://www.linkedin.com/in/kevin-león-242891217/"
-                ></iframe>
+                <Gallery />
               </WindowView>
             }
           />
