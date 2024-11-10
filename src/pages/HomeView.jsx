@@ -59,7 +59,7 @@ export default function HomeView() {
     <div className="flex flex-col w-full h-full py-16">
       {/* widgets */}
       <div className="flex flex-col h-full p-4 mt-10">
-        <Link to={'/google'} className="relative w-full h-20">
+        <Link to={'/bing'} className="relative w-full h-20">
           <BsBing className="absolute place-self-center left-6 top-0 bottom-0"/>
           <input className="w-full h-full rounded-full pl-20 bg-white" placeholder="Search..." type="text" />
         </Link>
@@ -69,7 +69,7 @@ export default function HomeView() {
           return (
             <Link
               key={inx}
-              to={'whatsapp'}
+              to={`/${app.name.toLowerCase()}`}
               className={`flex flex-col items-center space-y-2 justify-center hover:scale-110`}
             >
               <div
