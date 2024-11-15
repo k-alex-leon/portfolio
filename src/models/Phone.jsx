@@ -2,14 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import PhoneScreen from "./PhoneScreen";
 import { config, useSpring, animated } from "@react-spring/three";
+import { useStore } from "../hooks/useStore";
 
 export default function Phone(props) {
   const { nodes, materials } = useGLTF("./phone.glb");
+  const phoneRef = useRef();
   const [scaleUp, set] = useSpring(() => ({
     scale: 0,
-    config: config.wobbly,
-    // config: { mass: 10, tension: 500, friction: 50 },
+    // config: config.wobbly,
+    config: { mass: 10, tension: 500, friction: 50 },
   }));
+  const isPhoneHover = useStore((state) => state.isPhoneHover);
+
+  // useEffect(() => {
+  //   if (isPhoneHover) set({ scale: 0.15 });
+  //   else set({ scale: 0.1, delay: 500 });
+  // }, [isPhoneHover]);
 
   // scale animation with delay
   // its scaling from 0 to 0.1
@@ -21,7 +29,12 @@ export default function Phone(props) {
   // clearTimeout(delay);
 
   return (
-    <animated.group {...props} dispose={null} scale={scaleUp.scale}>
+    <animated.group
+      ref={phoneRef}
+      {...props}
+      dispose={null}
+      scale={scaleUp.scale}
+    >
       <mesh
         name="back"
         castShadow

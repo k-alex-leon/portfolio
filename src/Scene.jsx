@@ -2,17 +2,17 @@ import {
   Center,
   ContactShadows,
   Float,
+  Grid,
+  Html,
   PresentationControls,
   Scroll,
   ScrollControls,
   Shadow,
 } from "@react-three/drei";
-import Objects from "./Objects";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import Phone from "./models/Phone";
 import { useStore } from "./hooks/useStore";
-
 export default function Scene() {
   const isPhoneHover = useStore((state) => state.isPhoneHover);
   useFrame(({ pointer, camera }) => {
@@ -39,15 +39,8 @@ export default function Scene() {
     );
   });
   return (
-    // <ScrollControls pages={3}>
-    //   <Scroll>
-    //     <Objects />
-    //   </Scroll>
-    //   <Scroll html>
-    //     <Html />
-    //   </Scroll>
-    // </ScrollControls>
     <>
+      {/* <color args={["white"]} attach="background" /> */}
       <PresentationControls
         enabled={!isPhoneHover}
         global
@@ -58,11 +51,9 @@ export default function Scene() {
         azimuth={[-Math.PI / 1.4, Math.PI / 2]}
       >
         <Phone />
-        {/* <Float speed={0.5}>
-        </Float> */}
       </PresentationControls>
-
-      <ContactShadows scale={5} position={[0, -2.5, 0]} opacity={0.1} />
+      {/* phone shadow */}
+      {/* <ContactShadows scale={5} position={[0, -2.5, 0]} opacity={0.1} /> */}
     </>
   );
 }
