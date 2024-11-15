@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700,800&display=swap");
+
+.titleContainer {
+  font-family: "Montserrat", sans-serif;
+  /* background-color: black; */
+}
+
+.textContrast {
+  /* filter: invert(100%); */
+  /* position: fixed; */
+  font-weight: 800;
+  /* color: black; */
+  mix-blend-mode: difference;
+  /* background-blend-mode: difference; */
+  /* z-index: 10; */
+  /* -moz-background-clip: text; */
+  /* -webkit-background-clip: text; */
+}

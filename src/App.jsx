@@ -4,11 +4,15 @@ import { Canvas } from "@react-three/fiber";
 import Scene from "./Scene";
 import { Environment, Stats } from "@react-three/drei";
 import LoadingView from "./pages/LoadingView";
+import Sections from "./pages/Sections/Sections";
 
 function App() {
   return (
     <>
+      {/* display loading view while all is ready */}
       <LoadingView />
+      {/* html background content */}
+      <Sections />
       <div className="w-full h-full absolute">
         <Canvas>
           <Stats />
