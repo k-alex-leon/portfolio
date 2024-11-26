@@ -14,11 +14,6 @@ export default function Phone(props) {
   }));
   const isPhoneHover = useStore((state) => state.isPhoneHover);
 
-  // useEffect(() => {
-  //   if (isPhoneHover) set({ scale: 0.15 });
-  //   else set({ scale: 0.1, delay: 500 });
-  // }, [isPhoneHover]);
-
   // scale animation with delay
   // its scaling from 0 to 0.1
   useEffect(() => {
