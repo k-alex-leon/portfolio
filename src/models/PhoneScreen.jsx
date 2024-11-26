@@ -10,7 +10,13 @@ import Navigation from "../Navigation";
 
 export default function PhoneScreen() {
   const setPhoneHover = useStore((state) => state.setPhoneHover);
+  const setPhoneLock = useStore((state) => state.setPhoneLock);
   const [isLock, setLock] = useState(true);
+
+  const handleUnLockPhone = (lock) => {
+    setLock(lock);
+    setPhoneLock(lock);
+  };
 
   // if the phone screen is hover we change global state
   // this will be used to cancel some actions like camera movement or <PresentationColors />
@@ -44,9 +50,13 @@ export default function PhoneScreen() {
       <main
         onPointerOver={handleCursorIn}
         onPointerOut={handleCursorOut}
-        className={`relative w-full h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-[90px] text-4xl`}
+        className={`relative w-full h-full bg-gradient-to-r from-purple-900 to-blue-600 rounded-[90px] text-4xl opacity-95`}
       >
-        {isLock ? <LockView setClose={() => setLock(false)} /> : <Navigation />}
+        {isLock ? (
+          <LockView setClose={() => handleUnLockPhone(false)} />
+        ) : (
+          <Navigation />
+        )}
       </main>
     </Html>
   );
