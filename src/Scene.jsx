@@ -4,6 +4,7 @@ import {
   Float,
   Grid,
   Html,
+  OrbitControls,
   PresentationControls,
   Scroll,
   ScrollControls,
@@ -13,34 +14,38 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import Phone from "./models/Phone";
 import { useStore } from "./hooks/useStore";
+import Rig from "./utils/Rig";
+import Tools from "./components/Tools";
 export default function Scene() {
   const isPhoneHover = useStore((state) => state.isPhoneHover);
-  useFrame(({ pointer, camera }) => {
-    if (isPhoneHover) return;
-    camera.position.x = THREE.MathUtils.lerp(
-      camera.position.x,
-      pointer.x * 0.5,
-      0.03
-    );
-    camera.position.y = THREE.MathUtils.lerp(
-      camera.position.y,
-      pointer.y * 0.8,
-      0.01
-    );
-    // camera.position.z = THREE.MathUtils.lerp(
-    //   camera.position.z,
-    //   Math.max(4, Math.abs(pointer.x * pointer.y * 8)),
-    //   0.01
-    // );
-    camera.rotation.y = THREE.MathUtils.lerp(
-      camera.rotation.y,
-      pointer.x * -Math.PI * 0.025,
-      0.001
-    );
-  });
+  // useFrame(({ pointer, camera }) => {
+  //   if (isPhoneHover) return;
+  //   camera.position.x = THREE.MathUtils.lerp(
+  //     camera.position.x,
+  //     pointer.x * 0.5,
+  //     0.03
+  //   );
+  //   camera.position.y = THREE.MathUtils.lerp(
+  //     camera.position.y,
+  //     pointer.y * 0.8,
+  //     0.01
+  //   );
+  //   // camera.position.z = THREE.MathUtils.lerp(
+  //   //   camera.position.z,
+  //   //   Math.max(4, Math.abs(pointer.x * pointer.y * 8)),
+  //   //   0.01
+  //   // );
+  //   camera.rotation.y = THREE.MathUtils.lerp(
+  //     camera.rotation.y,
+  //     pointer.x * -Math.PI * 0.025,
+  //     0.001
+  //   );
+  // });
   return (
     <>
-      {/* <color args={["white"]} attach="background" /> */}
+      {/* camera movement */}
+      {!isPhoneHover && <Rig />}
+      
       <PresentationControls
         enabled={!isPhoneHover}
         global
@@ -52,6 +57,8 @@ export default function Scene() {
       >
         <Phone />
       </PresentationControls>
+      {/* <OrbitControls /> */}
+      <Tools />
       {/* phone shadow */}
       {/* <ContactShadows scale={5} position={[0, -2.5, 0]} opacity={0.1} /> */}
     </>
