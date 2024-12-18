@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function LockView({ setClose }) {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const areaRef = useRef();
 
   const x = useMotionValue(0);
-  const xInput = [0, 100];
+  const xInput = [0, 10];
   const opacityOutput = [1, 0];
   const opacity = useTransform(x, xInput, opacityOutput);
 
+  // this calls a param function that changes the unLock global variable
   const handleDragEnd = (e, info) => {
-    // if (info.offset.x > 100) alert("Phone unlocked!");
     setClose();
   };
 
@@ -21,9 +22,7 @@ export default function LockView({ setClose }) {
   }, []);
 
   return (
-    <div
-      className={`w-full h-full grid grid-rows-2 grid-cols-1 items-center place-content-center bg-gray-800 rounded-[90px] text-white`}
-    >
+    <div className="w-full h-full grid grid-rows-2 grid-cols-1 items-center place-content-center bg-gradient-to-bl from-gray-700 to-gray-800 rounded-[90px] text-white">
       {/* date and hour */}
       <div className="h-full flex flex-col items-center justify-center">
         <h5 className="text-[100px]">
@@ -42,7 +41,10 @@ export default function LockView({ setClose }) {
       </div>
 
       {/* slide to unlock */}
-      <div className="w-4/5 h-28 bg-white/10 rounded-full p-1 mb-8 relative place-self-center">
+      <div
+        ref={areaRef}
+        className="w-4/5 h-28 bg-gradient-to-r from-slate-600 to-transparent rounded-full p-1 mb-8 relative place-self-center"
+      >
         <motion.div
           className="absolute inset-0 flex items-center px-2"
           style={{ opacity }}
@@ -51,10 +53,10 @@ export default function LockView({ setClose }) {
         </motion.div>
         <motion.div
           drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
+          dragConstraints={areaRef}
           dragElastic={1}
           onDragEnd={handleDragEnd}
-          className="w-24 h-full bg-slate-200 opacity-70 rounded-full flex items-center justify-center cursor-grab text-black"
+          className="w-24 z-10 h-full bg-slate-200 opacity-70 rounded-full flex items-center justify-center cursor-grab text-black animate-pulse"
           style={{ x }}
         >
           <FaAngleRight />
