@@ -1,14 +1,6 @@
-import {
-  animate,
-  color,
-  delay,
-  easeInOut,
-  easeOut,
-  motion,
-} from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { easeInOut, motion } from "framer-motion";
 import "./Sections.css";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import NavContact from "../../components/NavContact";
 
 function Home() {
   const show = {
@@ -49,48 +41,18 @@ function Home() {
           className="text-right text-2xl mr-16 font-anton text-gray-700"
           {...show}
         >
-          And this is my portfolio.
+          And welcome to my portfolio.
         </motion.p>
       </div>
     </section>
   );
 }
 
-function Work() {
+export default function Sections() {
   return (
-    <section className="w-full h-screen bg-gradient-to-t from-slate-100 to-white">
-      {/* <p className="w-full text-6xl font-archivo">title for word</p> */}
-    </section>
-  );
-}
-
-export default function Sections({ isLocked }) {
-  const parallaxRef = useRef();
-  // const [locked, setLocked] = useState(isLocked);
-
-  const scroll = (num) => {
-    if (!parallaxRef.current) return;
-    parallaxRef.current.scrollTo(num);
-  };
-
-  useEffect(() => {
-    if (!isLocked) scroll(1);
-  }, [!isLocked]);
-
-  return (
-    <Parallax
-      ref={parallaxRef}
-      className="w-full h-full"
-      // style={{ top: 0, left: 0 }}
-      pages={2}
-      // horizontal
-    >
-      <ParallaxLayer offset={0} speed={1.5}>
-        <Home />
-      </ParallaxLayer>
-      <ParallaxLayer offset={1} speed={2.5}>
-        <Work />
-      </ParallaxLayer>
-    </Parallax>
+    <div className="w-full h-full relative">
+      <NavContact />
+      <Home />
+    </div>
   );
 }
