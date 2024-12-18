@@ -1,6 +1,7 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
+// this controlls the camera movement depending on cursor position
 export default function Rig() {
   return useFrame(({ pointer, camera }) => {
     camera.position.x = THREE.MathUtils.lerp(
@@ -25,3 +26,14 @@ export default function Rig() {
     );
   });
 }
+
+// export default function Rig() {
+//   const { camera, mouse } = useThree();
+//   const vec = new THREE.Vector3();
+//   return useFrame(() =>
+//     camera.position.lerp(
+//       vec.set(mouse.x * 2, mouse.y * 1, camera.position.z),
+//       0.02
+//     )
+//   );
+// }
