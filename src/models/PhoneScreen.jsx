@@ -1,12 +1,9 @@
 import { Html } from "@react-three/drei";
-import StatusBar from "../components/StatusBar";
-import HomeView from "../pages/HomeView";
-import BottomNav from "../components/BottomNav";
 import LockView from "../pages/LockView";
 import { useStore } from "../hooks/useStore";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Navigation from "../Navigation";
+import * as THREE from "three";
 
 export default function PhoneScreen() {
   const setPhoneHover = useStore((state) => state.setPhoneHover);
@@ -20,16 +17,17 @@ export default function PhoneScreen() {
 
   // if the phone screen is hover we change global state
   // this will be used to cancel some actions like camera movement or <PresentationColors />
-  const handleCursorIn = () => {
+  const handleCursorIn = (e) => {
     setPhoneHover(true);
   };
 
-  const handleCursorOut = () => {
+  const handleCursorOut = (e) => {
     setPhoneHover(false);
   };
   return (
     <Html
-      position={[0, 0.018, -0.81]}
+      // position={[0, 0.018, -0.81]}
+      position={[0, 0.018, -0.8]}
       style={{
         width: "760px",
         height: "1582px",
@@ -39,18 +37,20 @@ export default function PhoneScreen() {
         borderRadius: "90px",
         touchAction: "none",
         userSelect: "none",
+        // pointerEvents: 'none'
       }}
-      material={<meshStandardMaterial metalness={1} roughness={0.1} />}
       transform
-      occlude
+      // receiveShadow
+      // castShadow
+      // material={<planeGeometry args={[0.1, 0.1]} />}
+      occlude="blending"
+      zIndexRange={[99, 0]}
+      // occlude
     >
-      {/* <h4>Titulo pagina</h4> */}
-      {/* <img src="./wallpaper.jpg" style={{ width: "100%", height: "100%" }} /> */}
-
       <main
         onPointerOver={handleCursorIn}
-        onPointerOut={handleCursorOut}
-        className={`relative w-full h-full bg-gradient-to-r from-purple-900 to-blue-600 rounded-[90px] text-4xl opacity-95`}
+        onPointerLeave={handleCursorOut}
+        className={`relative w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-[90px] text-4xl opacity-95`}
       >
         {isLock ? (
           <LockView setClose={() => handleUnLockPhone(false)} />

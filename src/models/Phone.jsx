@@ -11,6 +11,7 @@ export default function Phone(props) {
     scale: 0,
     // config: config.wobbly,
     config: { mass: 10, tension: 500, friction: 50 },
+    reset: true,
   }));
   const isPhoneHover = useStore((state) => state.isPhoneHover);
 
@@ -29,6 +30,7 @@ export default function Phone(props) {
       {...props}
       dispose={null}
       scale={scaleUp.scale}
+      // rotation={[0, 0, Math.PI / 2]}
     >
       <mesh
         name="back"
