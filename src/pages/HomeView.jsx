@@ -1,6 +1,6 @@
 import { BsBing } from "react-icons/bs";
 import { TbTools } from "react-icons/tb";
-import { FaSuitcase } from "react-icons/fa";
+import { FaInfo, FaSuitcase } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useStore } from "../hooks/useStore";
 
@@ -26,38 +26,34 @@ export default function HomeView() {
           />
         </Link>
       </div>
-      <div className="h-full mt-10 py-6 px-4 mb-4 grid grid-cols-5 grid-rows-4 gap-10 text-white">
-        {/* weather widget */}
-        <button
-          onClick={(e) =>
-            handleOnWidgetClick(e, status === "weather" ? "" : "weather")
-          }
-          className="col-span-3 rounded-2xl bg-white/30 shadow-xl"
-        ></button>
-
+      <div className="h-full mt-10 pt-6 pb-10 px-4 mb-4 grid grid-cols-3 items-end gap-10 text-white">
         {/* tools widget */}
-        <button
-          onClick={(e) =>
-            handleOnWidgetClick(e, status === "tools" ? "" : "tools")
-          }
-          className="flex flex-col space-y-6 justify-center items-center bg-white/30 col-span-2 row-span-1 rounded-2xl shadow-xl"
+        <Link
+          to={"/tools"}
+          onClick={(e) => handleOnWidgetClick(e, "tools")}
+          className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
         >
-          <TbTools size={100} />
+          <TbTools size={80} />
           <h6 className="font-medium">Tools</h6>
-        </button>
-
+        </Link>
         {/* work widget */}
-        <div className="relative p-6 col-span-5 bg-white/30 rounded-2xl shadow-2xl">
-          <div className="w-full left-0 right-0 flex justify-between">
-            <h6 className="font-medium">Works</h6>
-            <FaSuitcase />
-          </div>
-          <hr className="h-1 bg-white mt-4" />
-        </div>
-
-        <button className="col-span-2 rounded-2xl bg-white/30 shadow-xl"></button>
-
-        <button className="col-span-3 rounded-2xl bg-white/30 shadow-xl"></button>
+        <Link
+          onClick={(e) => handleOnWidgetClick(e, "work")}
+          to={"/work"}
+          className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
+        >
+          <FaSuitcase size={80} />
+          <h6 className="font-medium">Work</h6>
+        </Link>
+        {/* info widget */}
+        <Link
+          to={"/info"}
+          onClick={(e) => handleOnWidgetClick(e, "info")}
+          className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
+        >
+          <FaInfo size={80} />
+          <h6 className="font-medium">Info</h6>
+        </Link>
       </div>
     </div>
   );

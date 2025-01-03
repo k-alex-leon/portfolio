@@ -1,31 +1,30 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Scene";
 import { Environment, OrbitControls, Preload, Stats } from "@react-three/drei";
 import LoadingView from "./pages/LoadingView";
-import Sections from "./pages/Sections/Sections";
 import { useStore } from "./hooks/useStore";
-import Work from "./pages/work/Work";
 import CursorLabel from "./components/CursorLabel";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
-  const { isPhoneLock, description } = useStore();
+  const { isPhoneHover, description } = useStore();
 
   return (
-    <div className="relative">
+    <div className="fixed w-full h-full overflow-hidden">
       {/* this will display a description when some objects are hovered */}
-      <CursorLabel description={description} />
+      {!isPhoneHover && <CursorLabel text={description} />}
       {/* display loading view while all is ready */}
       <LoadingView />
       {/* html background content */}
-      <Sections isLocked={isPhoneLock} />
+      <LandingPage />
       <div className="w-full h-full absolute top-0 flex">
-        <div className="top-0 left-0 w-full h-full">
+        <div className="top-0 left-0 h-full w-full">
           <Canvas>
             <Stats />
-            <ambientLight />
-            <directionalLight color="red" intensity={10} />
+            <ambientLight intensity={1}/>
+            <directionalLight color="white" intensity={10} />
             <Suspense fallback={null}>
               <Environment preset="city" />
               <Scene />
@@ -34,7 +33,7 @@ function App() {
             <Preload all />
           </Canvas>
         </div>
-        {/* <Work /> */}
+
       </div>
     </div>
   );

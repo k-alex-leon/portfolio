@@ -3,7 +3,8 @@ import HomeView from "./pages/HomeView";
 import NotFound from "./pages/NotFound";
 import WindowView from "./pages/WindowView";
 import Layout from "./pages/Layout";
-import Gallery from "./pages/Gallery";
+import Information from "./pages/Information";
+import { INFO } from "./constants";
 
 export default function Navigation() {
   return (
@@ -33,10 +34,28 @@ export default function Navigation() {
             }
           />
           <Route
-            path="gallery"
+            path="tools"
             element={
               <WindowView>
-                <Gallery />
+                <Information content={INFO[0].description} />
+              </WindowView>
+            }
+          />
+
+          <Route
+            path="work"
+            element={
+              <WindowView>
+                <Information content={INFO[1].description} />
+              </WindowView>
+            }
+          />
+
+          <Route
+            path="info"
+            element={
+              <WindowView>
+                <Information content={INFO[2].description} />
               </WindowView>
             }
           />

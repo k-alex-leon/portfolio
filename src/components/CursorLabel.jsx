@@ -1,28 +1,28 @@
-import { Html } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-export default function CursorLabel({ description = "" }) {
-  if (description === "") return;
-  const labelRef = useRef();
+export default function CursorLabel({ text = "" }) {
+  const labelRef = useRef(null);
 
-  // wait for ref response
+  const handleOnMove = useCallback((e) => {
+    // wait for ref response
+    if (!labelRef.current) return;
+    labelRef.current.style.top = `${e.pageY + 30}px`;
+    labelRef.current.style.left = `${e.pageX - 40}px`;
+  }, []);
+
   useEffect(() => {
-    const handleOnMove = (e) => {
-      if (!labelRef.current) return;
-      labelRef.current.style.top = `${e.pageY - 50}px`;
-      labelRef.current.style.left = `${e.pageX}px`;
-    };
+    window.addEventListener("mousemove", handleOnMove);
+    return () => window.removeEventListener("mousemove", handleOnMove);
+  }, [handleOnMove]);
 
-    return () => window.addEventListener("mousemove", handleOnMove);
-  }, [labelRef.current]);
-
-  return (
+  return text ? (
     <div
-      className="rounded-md text-nowrap px-2 py-1 absolute bg-slate-900 text-white text-xl z-[999]"
       ref={labelRef}
+      className="rounded-md text-nowrap px-2 py-1 absolute bg-slate-900 text-white text-xl z-[999]"
     >
-      {description}
+      {text}
     </div>
+  ) : (
+    <></>
   );
 }

@@ -1,13 +1,13 @@
-import { PresentationControls } from "@react-three/drei";
+import { Gltf, PresentationControls } from "@react-three/drei";
 import Phone from "./models/Phone";
 import { useStore } from "./hooks/useStore";
 import Rig from "./utils/Rig";
 import Tools from "./pages/Tools";
-import CursorLabel from "./components/CursorLabel";
-import Carousel from "./pages/work/Carousel";
+import Projects from "./pages/Projects";
+import Presentation from "./pages/Presentation";
 
 export default function Scene() {
-  const { isPhoneHover } = useStore();
+  const { isPhoneHover, status } = useStore();
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Scene() {
       {!isPhoneHover && <Rig />}
 
       <PresentationControls
-        enabled={!isPhoneHover}
+        enabled={!isPhoneHover && status !== "work" && status !== "info"}
         global
         config={{ mass: 2, tension: 500 }}
         snap={{ mass: 4, tension: 500 }}
@@ -26,8 +26,10 @@ export default function Scene() {
         <Phone />
       </PresentationControls>
 
-      {/* <Carousel /> */}
+      {/* animation section models */}
       <Tools />
+      <Projects />
+      <Presentation />
     </>
   );
 }

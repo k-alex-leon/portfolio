@@ -1,4 +1,3 @@
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 
@@ -64,5 +63,50 @@ export const MODELS = [
     position: [0, -2.8, 0.5],
     rotation: [-0.2, 0.1, 0.3],
     source: "./models/react.glb",
+  },
+];
+
+// using in projects
+export const PROJECTS_MODELS = [
+  {
+    source: "./rubik.glb",
+    scale: 6,
+    name: "Play Rubik's Cube",
+    position: [2.3, 0.2, 0],
+    rotation: [0.4, 1, 0],
+    link: "https://k-alex-leon.github.io/3d-react-rubikcube/",
+  },
+  {
+    source: "./tetris.glb",
+    scale: 12,
+    name: "Play Tetris",
+    position: [2, 2, 0],
+    rotation: [1.3, 0, 0],
+    link: "https://k-alex-leon.github.io/tetris-react-project/",
+  },
+  {
+    source: "./plane.glb",
+    scale: 1.5,
+    name: "Fly a Plane",
+    position: [2, -2, 0],
+    rotation: [0, 0.4, 0],
+    link: "https://k-alex-leon.github.io/plane-game-react-project/",
+  },
+];
+
+// using in <Information />
+export const INFO = [
+  {
+    title: "Tools",
+    description: `Although I use these tools most of the time, I am always willing to learn new things. As you can see, I
+        really like interactive pages.`,
+  },
+  {
+    title: "Projects",
+    description: `These are some of my favorite projects. As a hobby I like to develop minigames, squeezing different development tools.`,
+  },
+  {
+    title: "Info",
+    description: `If you want to know more about me, you can contact me through my social networks. I will be happy to answer your questions.`,
   },
 ];

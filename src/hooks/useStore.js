@@ -11,6 +11,6 @@ export const useStore = create((set, get) => ({
   status: "",
   setPageStatus: (st) => set({ status: st }),
   // this keeps the description of some mesh hover
-  description : "",
-  setDescription : (data) => set({description: data})
+  description: "",
+  setDescription: (data) => set({ description: data }),
 }));

@@ -1,13 +1,11 @@
 import { Html } from "@react-three/drei";
 import LockView from "../pages/LockView";
 import { useStore } from "../hooks/useStore";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Navigation from "../Navigation";
-import * as THREE from "three";
 
 export default function PhoneScreen() {
-  const setPhoneHover = useStore((state) => state.setPhoneHover);
-  const setPhoneLock = useStore((state) => state.setPhoneLock);
+  const { setPhoneHover, setPhoneLock } = useStore();
   const [isLock, setLock] = useState(true);
 
   const handleUnLockPhone = (lock) => {
@@ -18,10 +16,12 @@ export default function PhoneScreen() {
   // if the phone screen is hover we change global state
   // this will be used to cancel some actions like camera movement or <PresentationColors />
   const handleCursorIn = (e) => {
+    e.stopPropagation();
     setPhoneHover(true);
   };
-
+  
   const handleCursorOut = (e) => {
+    e.stopPropagation();
     setPhoneHover(false);
   };
   return (
@@ -40,17 +40,14 @@ export default function PhoneScreen() {
         // pointerEvents: 'none'
       }}
       transform
-      // receiveShadow
-      // castShadow
-      // material={<planeGeometry args={[0.1, 0.1]} />}
-      occlude="blending"
-      zIndexRange={[99, 0]}
-      // occlude
+      zIndexRange={[1, 0]}
+      occlude
     >
       <main
-        onPointerOver={handleCursorIn}
-        onPointerLeave={handleCursorOut}
-        className={`relative w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-[90px] text-4xl opacity-95`}
+        onPointerOver={(e) => handleCursorIn(e)}
+        onPointerLeave={(e) => handleCursorOut(e)}
+        // className={`relative w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-[90px] text-4xl opacity-95`}
+        className={`relative w-full h-full bg-[url('./wallpaper.jpg')] bg-no-repeat bg-cover rounded-[90px] text-4xl opacity-95`}
       >
         {isLock ? (
           <LockView setClose={() => handleUnLockPhone(false)} />

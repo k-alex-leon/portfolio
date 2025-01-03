@@ -7,7 +7,7 @@ export default function LockView({ setClose }) {
   const areaRef = useRef();
 
   const x = useMotionValue(0);
-  const xInput = [0, 10];
+  const xInput = [0, 1];
   const opacityOutput = [1, 0];
   const opacity = useTransform(x, xInput, opacityOutput);
 
@@ -54,7 +54,7 @@ export default function LockView({ setClose }) {
         <motion.div
           drag="x"
           dragConstraints={areaRef}
-          dragElastic={1}
+          dragElastic={0.2}
           onDragEnd={handleDragEnd}
           className="w-24 z-10 h-full bg-slate-200 opacity-70 rounded-full flex items-center justify-center cursor-grab text-black animate-pulse"
           style={{ x }}
