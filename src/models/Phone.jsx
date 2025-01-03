@@ -6,14 +6,15 @@ import { useStore } from "../hooks/useStore";
 
 export default function Phone(props) {
   const { nodes, materials } = useGLTF("./phone.glb");
+  const { status } = useStore();
   const phoneRef = useRef();
   const [scaleUp, set] = useSpring(() => ({
+    position: [0, 0, 0],
     scale: 0,
     // config: config.wobbly,
     config: { mass: 10, tension: 500, friction: 50 },
     reset: true,
   }));
-  const isPhoneHover = useStore((state) => state.isPhoneHover);
 
   // scale animation with delay
   // its scaling from 0 to 0.1
@@ -22,6 +23,13 @@ export default function Phone(props) {
       set({ scale: 0.1 });
     }, 1000);
   }, []);
+
+  // listen to global state
+  useEffect(() => {
+    set({
+      position: [status == "work" ? -2 : status == "info" ? 2 : 0, 0, 0],
+    });
+  }, [status]);
   // clearTimeout(delay);
 
   return (
@@ -29,6 +37,7 @@ export default function Phone(props) {
       ref={phoneRef}
       {...props}
       dispose={null}
+      position={scaleUp.position}
       scale={scaleUp.scale}
       // rotation={[0, 0, Math.PI / 2]}
     >
