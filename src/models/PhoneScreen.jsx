@@ -47,7 +47,7 @@ export default function PhoneScreen() {
         onPointerOver={(e) => handleCursorIn(e)}
         onPointerLeave={(e) => handleCursorOut(e)}
         // className={`relative w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-[90px] text-4xl opacity-95`}
-        className={`relative w-full h-full bg-[url('./wallpaper.jpg')] bg-no-repeat bg-cover rounded-[90px] text-4xl opacity-95`}
+        className={`relative w-full h-full bg-[url('/wallpaper.jpg')] bg-no-repeat bg-cover rounded-[90px] text-4xl opacity-95`}
       >
         {isLock ? (
           <LockView setClose={() => handleUnLockPhone(false)} />
