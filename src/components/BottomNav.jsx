@@ -12,10 +12,10 @@ export default function BottomNav() {
     <>
       <div className="flex absolute bottom-0 w-full bg-white/20 h-20 backdrop-blur-md mt-auto rounded-b-[90px] z-10">
         <div className="w-full flex justify-around text-white items-center">
-          <Link onClick={clearStatus} to={"/"}>
+          <Link onClick={clearStatus} to={"/portfolio/"}>
             <FiTriangle />
           </Link>
-          <Link onClick={clearStatus} to={"/"}>
+          <Link onClick={clearStatus} to={"/portfolio/"}>
             <FaRegSquare />
           </Link>
           <FaRegCircle />

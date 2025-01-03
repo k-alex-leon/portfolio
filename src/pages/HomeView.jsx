@@ -17,7 +17,7 @@ export default function HomeView() {
     <div className="flex flex-col w-full h-full py-16">
       {/* bing search */}
       <div className="flex flex-col mx-6 mt-10 shadow-xl">
-        <Link to={"/bing"} className="relative w-full h-24">
+        <Link to={"/portfolio/bing"} className="relative w-full h-24">
           <BsBing className="absolute place-self-center left-6 top-0 bottom-0" />
           <input
             className="w-full h-full rounded-xl pl-20 bg-white"
@@ -29,7 +29,7 @@ export default function HomeView() {
       <div className="h-full mt-10 pt-6 pb-10 px-4 mb-4 grid grid-cols-3 items-end gap-10 text-white">
         {/* tools widget */}
         <Link
-          to={"/tools"}
+          to={"/portfolio/tools"}
           onClick={(e) => handleOnWidgetClick(e, "tools")}
           className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
         >
@@ -39,7 +39,7 @@ export default function HomeView() {
         {/* work widget */}
         <Link
           onClick={(e) => handleOnWidgetClick(e, "work")}
-          to={"/work"}
+          to={"/portfolio/work"}
           className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
         >
           <FaSuitcase size={80} />
@@ -47,7 +47,7 @@ export default function HomeView() {
         </Link>
         {/* info widget */}
         <Link
-          to={"/info"}
+          to={"/portfolio/info"}
           onClick={(e) => handleOnWidgetClick(e, "info")}
           className="flex flex-col space-y-6 justify-center items-center bg-white/30 rounded-2xl shadow-xl p-4"
         >

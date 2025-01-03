@@ -22,7 +22,7 @@ function App() {
       <div className="w-full h-full absolute top-0 flex">
         <div className="top-0 left-0 h-full w-full">
           <Canvas>
-            <Stats />
+            {/* <Stats /> */}
             <ambientLight intensity={1}/>
             <directionalLight color="white" intensity={10} />
             <Suspense fallback={null}>
