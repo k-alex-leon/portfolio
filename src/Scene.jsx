@@ -12,12 +12,12 @@ export default function Scene() {
   return (
     <>
       {/* camera movement */}
-      {!isPhoneHover && <Rig />}
+      {/* {!isPhoneHover && <Rig />} */}
 
       <PresentationControls
         enabled={!isPhoneHover && status !== "work" && status !== "info"}
         global
-        config={{ mass: 2, tension: 500 }}
+        config={{ mass: 2, tension: 100 }}
         snap={{ mass: 4, tension: 500 }}
         rotation={[0, 0, 0]}
         polar={[-Math.PI / 3, Math.PI / 3]}

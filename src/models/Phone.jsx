@@ -57,7 +57,7 @@ export default function Phone(props) {
         castShadow
         receiveShadow
         geometry={nodes.screen.geometry}
-        material={materials["Material.003"]}
+        // material={materials["Material.003"]}
         position={[0.061, 0.018, 1.789]}
       >
         <PhoneScreen />

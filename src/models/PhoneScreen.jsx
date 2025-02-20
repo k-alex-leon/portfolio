@@ -27,7 +27,7 @@ export default function PhoneScreen() {
   return (
     <Html
       // position={[0, 0.018, -0.81]}
-      position={[0, 0.018, -0.8]}
+      position={[0, 0.018, -0.7]}
       style={{
         width: "760px",
         height: "1582px",
